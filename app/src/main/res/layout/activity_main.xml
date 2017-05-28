@@ -43,4 +43,16 @@
         android:paddingLeft="40dp"
         android:layout_marginTop="72dp" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:background="#ddffffff"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Equation Solver" />
+
 </RelativeLayout>

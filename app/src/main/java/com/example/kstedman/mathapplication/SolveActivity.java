@@ -15,6 +15,6 @@ public class SolveActivity extends AppCompatActivity {
         mEquationText = (TextView) findViewById(R.id.inputEquation);
         Intent intent = getIntent();
         String equation = intent.getStringExtra("equation1");
-        mEquationText.setText("equation input"+equation);
+        mEquationText.setText(equation);
     }
 }
