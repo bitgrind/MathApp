@@ -53,7 +53,7 @@
         android:background="#ddffffff"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Equation Solver"
+        android:text="Solve"
         android:textAlignment="center" />
 
     <Button
@@ -75,21 +75,21 @@
         android:text="Convert" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/solveButton"
         android:layout_width="98sp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/convertButton"
+        android:layout_toStartOf="@+id/convertButton"
         android:text="Solve" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/contactbutton"
         android:layout_width="98sp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Contact" />
+        android:text="Contact"
+        android:layout_alignTop="@+id/aboutButton"
+        android:layout_toRightOf="@+id/aboutButton"
+        android:layout_toEndOf="@+id/aboutButton" />
 
 </RelativeLayout>
