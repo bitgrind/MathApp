@@ -11,6 +11,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 import android.graphics.Typeface;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.convertButton) Button mConvertButton;
     @Bind(R.id.contactbutton) Button mContactButton;
     @Bind(R.id.solveButton) Button mSolveButton;
-    @Bind(R.id.inputEquation) Button mInputEquation;
+    @Bind(R.id.inputEquation) TextView mInputEquation;
     private TextView mPageTitle;
 
     @Override

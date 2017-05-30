@@ -53,7 +53,7 @@
         android:background="#ddffffff"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Solve"
+        android:text="SOLVR"
         android:textAlignment="center" />
 
     <Button
@@ -81,7 +81,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/convertButton"
         android:layout_toStartOf="@+id/convertButton"
-        android:text="Solve" />
+        android:text="Solvr" />
 
     <Button
         android:id="@+id/contactbutton"
