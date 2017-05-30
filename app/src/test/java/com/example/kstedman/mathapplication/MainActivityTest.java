@@ -49,8 +49,8 @@ public class MainActivityTest {
     }
 
     @Test
-    public void validateConvertButtonContent() {
-        TextView appNameTitle = (TextView) activity.findViewById(R.id.convertButton);
-        assertTrue("Convert".equals(appNameTitle.getText().toString()));
+    public void validateAboutButtonContent() {
+        TextView appNameTitle = (TextView) activity.findViewById(R.id.aboutButton);
+        assertTrue("Ab".equals(appNameTitle.getText().toString()));
     }
 }
