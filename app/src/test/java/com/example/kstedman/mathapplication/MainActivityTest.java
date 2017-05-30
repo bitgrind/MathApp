@@ -27,7 +27,30 @@ public class MainActivityTest {
     @Test
     public void validateTextViewContent() {
         TextView appNameTitle = (TextView) activity.findViewById(R.id.pageTitle);
-        Log.d("test", appNameTitle.getText().toString());
         assertTrue("SOLVR".equals(appNameTitle.getText().toString()));
+    }
+
+    @Test
+    public void validateSolvrButtonContent() {
+        TextView appNameTitle = (TextView) activity.findViewById(R.id.solveButton);
+        assertTrue("Solvr".equals(appNameTitle.getText().toString()));
+    }
+
+    @Test
+    public void validateContactButtonContent() {
+        TextView appNameTitle = (TextView) activity.findViewById(R.id.contactbutton);
+        assertTrue("Contact".equals(appNameTitle.getText().toString()));
+    }
+
+    @Test
+    public void validateConvertButtonContent() {
+        TextView appNameTitle = (TextView) activity.findViewById(R.id.convertButton);
+        assertTrue("Convert".equals(appNameTitle.getText().toString()));
+    }
+
+    @Test
+    public void validateConvertButtonContent() {
+        TextView appNameTitle = (TextView) activity.findViewById(R.id.convertButton);
+        assertTrue("Convert".equals(appNameTitle.getText().toString()));
     }
 }
