@@ -7,27 +7,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import android.graphics.Typeface;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private Button mSolveEquationButton;
-    private Button mSolveButton;
-    private Button mAboutButton;
-    private Button mContactButton;
-    private Button mConvertButton;
-    private EditText mInputEquation;
+    @Bind(R.id.solveEquationButton) Button mSolveEquationButton;
+    @Bind(R.id.aboutButton) Button mAboutButton;
+    @Bind(R.id.convertButton) Button mConvertButton;
+    @Bind(R.id.contactbutton) Button mContactButton;
+    @Bind(R.id.solveButton) Button mSolveButton;
+    @Bind(R.id.inputEquation) Button mInputEquation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mSolveEquationButton = (Button) findViewById(R.id.solveEquationButton);
-        mAboutButton = (Button) findViewById(R.id.aboutButton);
-        mConvertButton = (Button) findViewById(R.id.convertButton);
-        mContactButton = (Button) findViewById(R.id.contactbutton);
-        mSolveButton = (Button) findViewById(R.id.solveButton);
-        mInputEquation = (EditText) findViewById(R.id.inputEquation);
-
+        ButterKnife.bind(this);
 
         mSolveEquationButton.setOnClickListener(new View.OnClickListener() {
 
