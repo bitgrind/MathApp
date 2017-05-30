@@ -84,7 +84,7 @@
         android:text="Solvr" />
 
     <Button
-        android:id="@+id/contactbutton"
+        android:id="@+id/contactButton"
         android:layout_width="98sp"
         android:layout_height="wrap_content"
         android:text="Contact"

@@ -73,4 +73,13 @@ public class MainActivityTest {
         Intent actualIntent = shadowActivity.getNextStartedActivity();
         assertTrue(actualIntent.filterEquals(expectedIntent));
     }
+
+    @Test
+    public void contactActivityStarted() {
+        activity.findViewById(R.id.contactButton).performClick();
+        Intent expectedIntent = new Intent(activity, SolveActivity.class);
+        ShadowActivity shadowActivity = org.robolectric.Shadows.shadowOf(activity);
+        Intent actualIntent = shadowActivity.getNextStartedActivity();
+        assertTrue(actualIntent.filterEquals(expectedIntent));
+    }
 }

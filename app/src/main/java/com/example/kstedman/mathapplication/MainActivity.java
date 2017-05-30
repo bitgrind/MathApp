@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.solveEquationButton) Button mSolveEquationButton;
     @Bind(R.id.aboutButton) Button mAboutButton;
     @Bind(R.id.convertButton) Button mConvertButton;
-    @Bind(R.id.contactbutton) Button mContactButton;
+    @Bind(R.id.contactButton) Button mContactButton;
     @Bind(R.id.solveButton) Button mSolveButton;
     @Bind(R.id.inputEquation) TextView mInputEquation;
     private TextView mPageTitle;
