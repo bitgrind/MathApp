@@ -57,8 +57,17 @@ public class MainActivityTest {
     }
 
     @Test
-    public void secondActivityStarted() {
+    public void solveActivityStarted() {
         activity.findViewById(R.id.solveEquationButton).performClick();
+        Intent expectedIntent = new Intent(activity, SolveActivity.class);
+        ShadowActivity shadowActivity = org.robolectric.Shadows.shadowOf(activity);
+        Intent actualIntent = shadowActivity.getNextStartedActivity();
+        assertTrue(actualIntent.filterEquals(expectedIntent));
+    }
+
+    @Test
+    public void aboutActivityStarted() {
+        activity.findViewById(R.id.aboutButton).performClick();
         Intent expectedIntent = new Intent(activity, SolveActivity.class);
         ShadowActivity shadowActivity = org.robolectric.Shadows.shadowOf(activity);
         Intent actualIntent = shadowActivity.getNextStartedActivity();
