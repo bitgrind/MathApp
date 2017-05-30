@@ -51,6 +51,6 @@ public class MainActivityTest {
     @Test
     public void validateAboutButtonContent() {
         TextView appNameTitle = (TextView) activity.findViewById(R.id.aboutButton);
-        assertTrue("Ab".equals(appNameTitle.getText().toString()));
+        assertTrue("About".equals(appNameTitle.getText().toString()));
     }
 }
