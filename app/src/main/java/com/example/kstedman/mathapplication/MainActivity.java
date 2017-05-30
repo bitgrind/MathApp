@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 import android.graphics.Typeface;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     @Bind(R.id.solveEquationButton) Button mSolveEquationButton;
@@ -19,12 +20,18 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.contactbutton) Button mContactButton;
     @Bind(R.id.solveButton) Button mSolveButton;
     @Bind(R.id.inputEquation) Button mInputEquation;
+    private TextView mPageTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        mPageTitle = (TextView) findViewById(R.id.pageTitle);
+        Typeface leixoFont = Typeface.createFromAsset(getAssets(), "fonts/leixo.ttf");
+
+        mPageTitle.setTypeface(leixoFont);
 
         mSolveEquationButton.setOnClickListener(new View.OnClickListener() {
 
