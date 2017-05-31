@@ -55,5 +55,5 @@
         android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
-        android:text="Further exploration would be science lessons, or tutorials on basic proven science. Maybe Equation types, maybe how to model equations, how they affect themselves depending on range and input. Another kinda of interesting idea would be mixing words or symbols and then plugging equations and having visual representation of that algorithm" />
+        android:text="Further exploration would be science lessons, or tutorials on basic proven science. Maybe Equation types, maybe how to model equations, how they affect themselves depending on range and input. Another kinda of interesting idea would be mixing words or symbols and then plugging equations and having visual representation of that algorithm." />
 </RelativeLayout>
