@@ -9,23 +9,28 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 public class SolveActivity extends AppCompatActivity {
-    private TextView mEquationText;
-    private ListView mListView;
+    public static final String TAG = SolveActivity.class.getSimpleName();
     private String[] equationSteps = new String[] {"This is the complicated Problem","This is the less complicated problem","More Less complicated","the most simple"};
+
+    @Bind(R.id.equationSteps) ListView mListView;
+    @Bind(R.id.inputEquation) TextView mEquationText;
+
+    public ArrayList<WolframResponseModel> mResults = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solve);
-
-        mListView = (ListView) findViewById(R.id.equationSteps);
-        mEquationText = (TextView) findViewById(R.id.inputEquation);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         String equation = intent.getStringExtra("equation1");
