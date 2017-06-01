@@ -8,7 +8,7 @@ public class WolframResponseModel {
         this.mType = result;
     }
 
-    public String getResult(){
+    public String getType(){
         return mType;
     }
 

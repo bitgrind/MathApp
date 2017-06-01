@@ -19,7 +19,6 @@ import okhttp3.Response;
 
 public class SolveActivity extends AppCompatActivity {
     public static final String TAG = SolveActivity.class.getSimpleName();
-    private String[] equationSteps = new String[] {"This is the complicated Problem","This is the less complicated problem","More Less complicated","the most simple"};
 
     @Bind(R.id.equationSteps) ListView mListView;
     @Bind(R.id.inputEquation) TextView mEquationText;
@@ -34,13 +33,10 @@ public class SolveActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String equation = intent.getStringExtra("equation1");
+
         mEquationText.setText(equation);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, equationSteps);
-        mListView.setAdapter(adapter);
-
         getSolutions(equation);
-
     }
 
     private void getSolutions(String questionEquation){
@@ -53,13 +49,25 @@ public class SolveActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v("WolframAnwser", jsonData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(Call call, Response response) {
+                mResults = wolframService.processAnswer(response);
+
+                SolveActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] responseNames = new String[mResults.size()];
+                        for(int i = 0; i < responseNames.length; i++){
+                            responseNames[i] = mResults.get(i).getType();
+                        }
+
+                        ArrayAdapter adapter = new ArrayAdapter(SolveActivity.this, android.R.layout.simple_list_item_1, responseNames);
+                        mListView.setAdapter(adapter);
+
+                        for (WolframResponseModel response : mResults){
+                            Log.d(TAG, ""+response.getType());
+                        }
+                    }
+                });
             }
         });
     }

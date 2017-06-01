@@ -37,24 +37,21 @@ public class WolframService {
         call.enqueue(callback);
     }
 
-    public ArrayList<WolframResponseModel> processAnswer(Response result){
+    public ArrayList<WolframResponseModel> processAnswer(Response response){
         ArrayList<WolframResponseModel> results = new ArrayList<>();
-        System.out.println(result);
         try {
-            String jsonData = result.body().string();
-
-            if(result.isSuccessful()) {
+            String jsonData = response.body().string();
+            Log.d("wolfservice json: ", jsonData);
+            if(response.isSuccessful()) {
                 JSONObject wolframJSON = new JSONObject(jsonData);
-                JSONArray wolframResponse = wolframJSON.getJSONArray("pods");
-                String logLength = Integer.toString(wolframResponse.length());
-                Log.v("pods", logLength);
-
+                JSONArray wolframResponse = wolframJSON.getJSONArray("queryresult");
+                Log.d("wolframResponse",wolframResponse.toString());
                 for(int i  = 0; i < wolframResponse.length(); i++) {
-                    JSONObject responseJSON = wolframResponse.getJSONObject(i);
-                    String responseType = responseJSON.getString("title");
+                    JSONObject resultJSON = wolframResponse.getJSONObject(i);
+                    String responseType = resultJSON.getString("title");
 
-                    WolframResponseModel response = new WolframResponseModel(responseType);
-                    results.add(response);
+                    WolframResponseModel responseObj = new WolframResponseModel(responseType);
+                    results.add(responseObj);
                 }
             }
 
