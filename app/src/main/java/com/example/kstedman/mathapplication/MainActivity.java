@@ -14,7 +14,7 @@ import android.graphics.Typeface;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.solveEquationButton) Button mSolveEquationButton;
     @Bind(R.id.aboutButton) Button mAboutButton;
     @Bind(R.id.convertButton) Button mConvertButton;
@@ -33,49 +33,43 @@ public class MainActivity extends AppCompatActivity {
         Typeface leixoFont = Typeface.createFromAsset(getAssets(), "fonts/leixo.ttf");
 
         mPageTitle.setTypeface(leixoFont);
+        mSolveEquationButton.setOnClickListener(this);
+        mAboutButton.setOnClickListener(this);
+        mContactButton.setOnClickListener(this);
+        mConvertButton.setOnClickListener(this);
+        mSolveButton.setOnClickListener(this);
 
-        mSolveEquationButton.setOnClickListener(new View.OnClickListener() {
+    }
 
-            @Override
-            public void onClick(View v) {
-                String mathEquation = mInputEquation.getText().toString();
-                Log.d("Input Equation", "Whats up");
-                Intent intent = new Intent(MainActivity.this, SolveActivity.class);
-                intent.putExtra("equation1", mathEquation);
-                startActivity(intent);
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        Log.v("MainActivity Click", v.toString());
 
-        mAboutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(v == mSolveEquationButton) {
+            String mathEquation = mInputEquation.getText().toString();
+            Intent intent = new Intent(MainActivity.this, SolveActivity.class);
+            intent.putExtra("question", mathEquation);
+            startActivity(intent);
+        }
 
-        mContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(v == mAboutButton) {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
+        }
 
-        mConvertButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ConvertActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(v == mContactButton) {
+            Intent intent = new Intent(MainActivity.this, ContactActivity.class);
+            startActivity(intent);
+        }
 
-        mSolveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(v == mConvertButton) {
+            Intent intent = new Intent(MainActivity.this, ConvertActivity.class);
+            startActivity(intent);
+        }
+
+        if(v == mSolveButton) {
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

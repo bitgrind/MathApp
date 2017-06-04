@@ -26,6 +26,9 @@ public class WolframService {
 
         //Build the URL
         HttpUrl.Builder urlBuilder = HttpUrl.parse(WolframConstants.WOLFRAM_URL).newBuilder();
+        urlBuilder.addQueryParameter("appid", WolframConstants.WOLFRAM_KEY);
+        urlBuilder.addQueryParameter("output", "json");
+        urlBuilder.addQueryParameter("input", questionEquation);
         String url = urlBuilder.build().toString();
 
         //Build the Request
@@ -44,13 +47,17 @@ public class WolframService {
             Log.d("wolfservice json: ", jsonData);
             if(response.isSuccessful()) {
                 JSONObject wolframJSON = new JSONObject(jsonData);
-                JSONArray wolframResponse = wolframJSON.getJSONArray("queryresult");
-                Log.d("wolframResponse",wolframResponse.toString());
-                for(int i  = 0; i < wolframResponse.length(); i++) {
-                    JSONObject resultJSON = wolframResponse.getJSONObject(i);
-                    String responseType = resultJSON.getString("title");
+                JSONObject queryResultJSON = wolframJSON.getJSONObject("queryresult");
+                JSONArray responseArray = queryResultJSON.getJSONArray("pods");
 
-                    WolframResponseModel responseObj = new WolframResponseModel(responseType);
+                for(int i  = 0; i < responseArray.length(); i++) {
+                    JSONObject resultJSON = responseArray.getJSONObject(i);
+                    JSONObject subpodJSON = resultJSON.getJSONObject("subpods");
+                    String responseTitle = resultJSON.getString("title");
+                    String responseValue = resultJSON.getString("");
+
+                    WolframResponseModel responseObj = new WolframResponseModel(responseTitle, responseValue);
+//                    Log.v("");
                     results.add(responseObj);
                 }
             }

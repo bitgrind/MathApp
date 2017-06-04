@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,7 +33,7 @@ public class SolveActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        String equation = intent.getStringExtra("equation1");
+        String equation = intent.getStringExtra("question");
 
         mEquationText.setText(equation);
 
@@ -52,19 +53,27 @@ public class SolveActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 mResults = wolframService.processAnswer(response);
 
+
+//                Log.v("responseName Value", );
+
+//                for(int k = 0; k < mResults.length; k++){
+//                    Log.v("responseName Value", mResults[k]);
+//                }
+
                 SolveActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String[] responseNames = new String[mResults.size()];
                         for(int i = 0; i < responseNames.length; i++){
-                            responseNames[i] = mResults.get(i).getType();
+                            responseNames[i] = mResults.get(i).getTitle();
                         }
+                        Log.v("responseNameLength", Integer.toString(responseNames.length));
 
-                        ArrayAdapter adapter = new ArrayAdapter(SolveActivity.this, android.R.layout.simple_list_item_1, responseNames);
+                        WolframCustomAdapter adapter = new WolframCustomAdapter(SolveActivity.this, android.R.layout.simple_list_item_1, responseNames);
                         mListView.setAdapter(adapter);
 
                         for (WolframResponseModel response : mResults){
-                            Log.d(TAG, ""+response.getType());
+                            Log.d("WolframResponse", ""+response.getTitle());
                         }
                     }
                 });

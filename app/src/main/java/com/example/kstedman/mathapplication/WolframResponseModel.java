@@ -2,14 +2,20 @@ package com.example.kstedman.mathapplication;
 
 
 public class WolframResponseModel {
-    private String mType;
+    private String mTitle;
+    private String mValue;
 
-    public WolframResponseModel(String result){
-        this.mType = result;
+    public WolframResponseModel(String title, String value){
+        this.mTitle = title;
+        this.mValue = value;
     }
 
-    public String getType(){
-        return mType;
+    public String getTitle(){
+        return mTitle;
+    }
+
+    public String getValue(){
+        return mValue;
     }
 
 }
