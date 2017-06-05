@@ -1,6 +1,9 @@
-package com.example.kstedman.mathapplication;
+package com.example.kstedman.mathapplication.services;
 
 import android.util.Log;
+
+import com.example.kstedman.mathapplication.WolframConstants;
+import com.example.kstedman.mathapplication.models.WolframResponseModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,7 +11,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -16,8 +18,6 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
-import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
 public class WolframService {
 
@@ -49,16 +49,25 @@ public class WolframService {
                 JSONObject wolframJSON = new JSONObject(jsonData);
                 JSONObject queryResultJSON = wolframJSON.getJSONObject("queryresult");
                 JSONArray responseArray = queryResultJSON.getJSONArray("pods");
+                Log.v("first Loop", "success");
 
                 for(int i  = 0; i < responseArray.length(); i++) {
                     JSONObject resultJSON = responseArray.getJSONObject(i);
-                    JSONObject subpodJSON = resultJSON.getJSONObject("subpods");
+                    JSONArray subpodJSON = resultJSON.getJSONArray("subpods");
                     String responseTitle = resultJSON.getString("title");
-                    String responseValue = resultJSON.getString("");
 
-                    WolframResponseModel responseObj = new WolframResponseModel(responseTitle, responseValue);
-//                    Log.v("");
-                    results.add(responseObj);
+                    for(int k = 0; k < subpodJSON.length(); k++) {
+                        JSONObject subpodObj = subpodJSON.getJSONObject(0);
+                        String responseValue = subpodObj.getString("plaintext");
+
+                        if(responseValue != null) {
+                            WolframResponseModel responseObj = new WolframResponseModel(responseTitle, responseValue);
+
+                            results.add(responseObj);
+                        }
+                    }
+
+
                 }
             }
 

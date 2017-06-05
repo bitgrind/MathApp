@@ -2,8 +2,10 @@ package com.example.kstedman.mathapplication;
 
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import android.widget.TextView;
+
+import com.example.kstedman.mathapplication.ui.MainActivity;
+import com.example.kstedman.mathapplication.ui.SolveActivity;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.example.kstedman.mathapplication;
+package com.example.kstedman.mathapplication.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +11,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 import android.graphics.Typeface;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.kstedman.mathapplication.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.solveEquationButton) Button mSolveEquationButton;

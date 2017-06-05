@@ -1,16 +1,19 @@
-package com.example.kstedman.mathapplication;
+package com.example.kstedman.mathapplication.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.kstedman.mathapplication.R;
+import com.example.kstedman.mathapplication.adapters.WolframCustomAdapter;
+import com.example.kstedman.mathapplication.models.WolframResponseModel;
+import com.example.kstedman.mathapplication.services.WolframService;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,6 +45,7 @@ public class SolveActivity extends AppCompatActivity {
 
     private void getSolutions(String questionEquation){
         final WolframService wolframService = new WolframService();
+
         wolframService.solveMathEquation(questionEquation, new Callback(){
 
             @Override
@@ -53,27 +57,23 @@ public class SolveActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 mResults = wolframService.processAnswer(response);
 
-
-//                Log.v("responseName Value", );
-
-//                for(int k = 0; k < mResults.length; k++){
-//                    Log.v("responseName Value", mResults[k]);
-//                }
-
                 SolveActivity.this.runOnUiThread(new Runnable() {
+
                     @Override
                     public void run() {
                         String[] responseNames = new String[mResults.size()];
+                        String[] responseValues = new String[mResults.size()];
                         for(int i = 0; i < responseNames.length; i++){
                             responseNames[i] = mResults.get(i).getTitle();
+                            responseValues[i] = mResults.get(i).getValue();
                         }
                         Log.v("responseNameLength", Integer.toString(responseNames.length));
 
-                        WolframCustomAdapter adapter = new WolframCustomAdapter(SolveActivity.this, android.R.layout.simple_list_item_1, responseNames);
+                        WolframCustomAdapter adapter = new WolframCustomAdapter(SolveActivity.this, android.R.layout.simple_list_item_1, responseNames, responseValues);
                         mListView.setAdapter(adapter);
 
                         for (WolframResponseModel response : mResults){
-                            Log.d("WolframResponse", ""+response.getTitle());
+                            Log.d("WolframResponse", ""+response.getTitle()+", value: "+response.getValue());
                         }
                     }
                 });

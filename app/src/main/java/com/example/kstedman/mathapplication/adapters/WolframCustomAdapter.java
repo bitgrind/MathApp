@@ -1,4 +1,4 @@
-package com.example.kstedman.mathapplication;
+package com.example.kstedman.mathapplication.adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
@@ -19,6 +19,9 @@ public class WolframCustomAdapter extends ArrayAdapter {
     public Object getItem(int position) {
         String responseTitle = mResponse[position];
         String responseValue = mValue[position];
+
+
+
         return responseTitle;
     }
 

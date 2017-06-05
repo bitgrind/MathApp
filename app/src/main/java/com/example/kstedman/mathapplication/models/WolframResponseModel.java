@@ -1,4 +1,4 @@
-package com.example.kstedman.mathapplication;
+package com.example.kstedman.mathapplication.models;
 
 
 public class WolframResponseModel {

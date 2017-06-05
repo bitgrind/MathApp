@@ -11,17 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SolveActivity" />
-        <activity android:name=".ConvertActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".ContactActivity"></activity>
+        <activity android:name=".ui.SolveActivity" />
+        <activity android:name=".ui.ConvertActivity" />
+        <activity android:name=".ui.AboutActivity" />
+        <activity android:name=".ui.ContactActivity"></activity>
     </application>
 
 </manifest>
