@@ -33,7 +33,6 @@ public class WolframService {
 
         //Build the Request
         Request request = new Request.Builder().url(url).build();
-        Log.v("WolfServiceUrl", url);
 
         //Make the Call
         Call call = client.newCall(request);
@@ -49,7 +48,6 @@ public class WolframService {
                 JSONObject wolframJSON = new JSONObject(jsonData);
                 JSONObject queryResultJSON = wolframJSON.getJSONObject("queryresult");
                 JSONArray responseArray = queryResultJSON.getJSONArray("pods");
-                Log.v("first Loop", "success");
 
                 for(int i  = 0; i < responseArray.length(); i++) {
                     JSONObject resultJSON = responseArray.getJSONObject(i);
@@ -76,6 +74,7 @@ public class WolframService {
         } catch(JSONException e){
             e.printStackTrace();
         }
+        Log.v("serviceOutput", results.toString());
         return results;
     };
 }

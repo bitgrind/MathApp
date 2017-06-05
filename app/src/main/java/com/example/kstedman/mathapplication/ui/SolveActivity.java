@@ -28,7 +28,7 @@ public class SolveActivity extends AppCompatActivity {
     public static final String TAG = SolveActivity.class.getSimpleName();
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-    @Bind(R.id.inputEquation) TextView mEquationText;
+//    @Bind(R.id.inputEquation) TextView mEquationText;
 
     private WolframListAdapter mAdapter;
 
@@ -43,7 +43,7 @@ public class SolveActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String equation = intent.getStringExtra("question");
 
-        mEquationText.setText(equation);
+//        mEquationText.setText(equation);
 
         getSolutions(equation);
     }
@@ -61,6 +61,7 @@ public class SolveActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) {
                 mResults = wolframService.processAnswer(response);
+                Log.v("solve log", mResults.toString());
 
                 SolveActivity.this.runOnUiThread(new Runnable() {
 
