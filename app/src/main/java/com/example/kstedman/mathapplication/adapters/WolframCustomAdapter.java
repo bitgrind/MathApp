@@ -20,8 +20,6 @@ public class WolframCustomAdapter extends ArrayAdapter {
         String responseTitle = mResponse[position];
         String responseValue = mValue[position];
 
-
-
         return responseTitle;
     }
 

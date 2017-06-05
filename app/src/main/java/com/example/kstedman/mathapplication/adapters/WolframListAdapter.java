@@ -2,7 +2,9 @@ package com.example.kstedman.mathapplication.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.kstedman.mathapplication.R;
@@ -20,6 +22,18 @@ public class WolframListAdapter extends RecyclerView.Adapter<WolframListAdapter.
     public WolframListAdapter(Context context, ArrayList<WolframResponseModel> responses) {
         mContext = context;
         mResponses = responses;
+    }
+
+    @Override
+    public WolframListAdapter.WolframViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.solve_list_item, parent, false);
+        WolframViewHolder viewHolder = new WolframViewHolder(view);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(WolframListAdapter.WolframViewHolder holder, int position) {
+        holder.bindWolframResponse(mResponses.get(position));
     }
 
     @Override

@@ -3,12 +3,15 @@ package com.example.kstedman.mathapplication.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.kstedman.mathapplication.R;
 import com.example.kstedman.mathapplication.adapters.WolframCustomAdapter;
+import com.example.kstedman.mathapplication.adapters.WolframListAdapter;
 import com.example.kstedman.mathapplication.models.WolframResponseModel;
 import com.example.kstedman.mathapplication.services.WolframService;
 
@@ -24,8 +27,10 @@ import okhttp3.Response;
 public class SolveActivity extends AppCompatActivity {
     public static final String TAG = SolveActivity.class.getSimpleName();
 
-    @Bind(R.id.equationSteps) ListView mListView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.inputEquation) TextView mEquationText;
+
+    private WolframListAdapter mAdapter;
 
     public ArrayList<WolframResponseModel> mResults = new ArrayList<>();
 
@@ -61,20 +66,13 @@ public class SolveActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        String[] responseNames = new String[mResults.size()];
-                        String[] responseValues = new String[mResults.size()];
-                        for(int i = 0; i < responseNames.length; i++){
-                            responseNames[i] = mResults.get(i).getTitle();
-                            responseValues[i] = mResults.get(i).getValue();
-                        }
-                        Log.v("responseNameLength", Integer.toString(responseNames.length));
 
-                        WolframCustomAdapter adapter = new WolframCustomAdapter(SolveActivity.this, android.R.layout.simple_list_item_1, responseNames, responseValues);
-                        mListView.setAdapter(adapter);
+                        mAdapter = new WolframListAdapter(getApplicationContext(), mResults);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManger = new LinearLayoutManager(SolveActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManger);
+                        mRecyclerView.setHasFixedSize(true);
 
-                        for (WolframResponseModel response : mResults){
-                            Log.d("WolframResponse", ""+response.getTitle()+", value: "+response.getValue());
-                        }
                     }
                 });
             }
