@@ -52,8 +52,19 @@
         android:id="@+id/textView7"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_below="@+id/textView6"
+        android:layout_marginTop="81dp"
+        android:text="After Making API calls and getting respose, I have change my direction to cater to more of a response based App. So you ask a question and there would be a list response of questions you asked. You can click on a response item, and get taken to a detailed page of that question and respose, and all the sub responses, and be able to swipe through each one." />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:text="Further exploration would be science lessons, or tutorials on basic proven science. Maybe Equation types, maybe how to model equations, how they affect themselves depending on range and input. Another kinda of interesting idea would be mixing words or symbols and then plugging equations and having visual representation of that algorithm." />
+        android:layout_marginTop="28dp"
+        android:text="Further Exploration"
+        android:textSize="24sp" />
 </RelativeLayout>

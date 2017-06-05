@@ -1,5 +1,8 @@
 package com.example.kstedman.mathapplication.models;
 
+import org.parceler.Parcel;
+
+
 
 public class WolframResponseModel {
     private String mTitle;
