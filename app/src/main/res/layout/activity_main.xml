@@ -31,17 +31,17 @@
         android:id="@+id/inputEquation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Input Equation"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="72dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp"
         android:background="#ffffff"
-        android:paddingTop="20dp"
+        android:hint="Ask Any Question"
         android:paddingBottom="20dp"
-        android:paddingRight="40dp"
         android:paddingLeft="40dp"
-        android:layout_marginTop="72dp" />
+        android:paddingRight="40dp"
+        android:paddingTop="20dp"
+        tools:layout_editor_absoluteX="131dp"
+        tools:layout_editor_absoluteY="72dp" />
 
     <TextView
         android:id="@+id/pageTitle"
