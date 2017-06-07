@@ -10,4 +10,6 @@ public final class WolframConstants {
 
     public static final String FIREBASE_CHILD_SEARCHED_TOPIC = "searchedTopic";
 
+    public static final String FIREBASE_CHILD_QUESTIONS = "questions";
+
 }

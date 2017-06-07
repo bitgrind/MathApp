@@ -67,7 +67,6 @@ public class SolveActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) {
                 mResults = wolframService.processAnswer(response);
-                Log.v("solve log", mResults.toString());
 
                 SolveActivity.this.runOnUiThread(new Runnable() {
 

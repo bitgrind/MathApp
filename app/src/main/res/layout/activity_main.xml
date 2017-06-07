@@ -57,7 +57,7 @@
         android:background="#99FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Wolftannica"
+        android:text="WOLFTannICa"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="50sp" />

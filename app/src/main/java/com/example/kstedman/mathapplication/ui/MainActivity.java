@@ -18,8 +18,11 @@ import android.widget.TextView;
 
 import com.example.kstedman.mathapplication.R;
 import com.example.kstedman.mathapplication.WolframConstants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.solveEquationButton) Button mSolveEquationButton;
@@ -36,9 +39,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DatabaseReference mSearchedTopicReference;
 
+    private ValueEventListener mSearchTopicReferenceListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mSearchedTopicReference = FirebaseDatabase.getInstance().getReference().child(WolframConstants.FIREBASE_CHILD_SEARCHED_TOPIC);
+
+        mSearchTopicReferenceListener = mSearchedTopicReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("MainValueEventChange", "onChanged Triggered" + dataSnapshot);
+                for(DataSnapshot topicSnapshot : dataSnapshot.getChildren()){
+                    String equation = topicSnapshot.getValue().toString();
+                    Log.d("TopicUpdated", equation);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("MainValueEventError", "onCancelled Triggered");
+            }
+        });
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -56,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mContactButton.setOnClickListener(this);
         mConvertButton.setOnClickListener(this);
         mSolveButton.setOnClickListener(this);
-
     }
 
     @Override
@@ -106,4 +129,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    private void addToSharedPreferences(String equation){
 //        mEditor.putString(WolframConstants.PREFERENCES_TOPIC_KEY, "Math").apply();
 //    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSearchedTopicReference.removeEventListener(mSearchTopicReferenceListener);
+    }
 }

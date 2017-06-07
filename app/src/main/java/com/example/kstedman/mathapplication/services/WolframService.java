@@ -74,7 +74,6 @@ public class WolframService {
         } catch(JSONException e){
             e.printStackTrace();
         }
-        Log.v("serviceOutput", results.toString());
         return results;
     };
 }
