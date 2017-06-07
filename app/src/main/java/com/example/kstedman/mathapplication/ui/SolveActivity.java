@@ -1,6 +1,8 @@
 package com.example.kstedman.mathapplication.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.kstedman.mathapplication.R;
+import com.example.kstedman.mathapplication.WolframConstants;
 import com.example.kstedman.mathapplication.adapters.WolframCustomAdapter;
 import com.example.kstedman.mathapplication.adapters.WolframListAdapter;
 import com.example.kstedman.mathapplication.models.WolframResponseModel;
@@ -27,11 +30,13 @@ import okhttp3.Response;
 public class SolveActivity extends AppCompatActivity {
     public static final String TAG = SolveActivity.class.getSimpleName();
 
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentTopic;
+    private String mSearchedTopic;
+
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-//    @Bind(R.id.inputEquation) TextView mEquationText;
 
     private WolframListAdapter mAdapter;
-
     public ArrayList<WolframResponseModel> mResults = new ArrayList<>();
 
     @Override
@@ -43,12 +48,13 @@ public class SolveActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String equation = intent.getStringExtra("question");
 
-//        mEquationText.setText(equation);
-
-        getSolutions(equation);
+        getSolutions(equation, "Math");
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentTopic = mSharedPreferences.getString(WolframConstants.PREFERENCES_TOPIC_KEY, null);
+//        Log.v("SetPrefTopicKey", mRecentTopic);
     }
 
-    private void getSolutions(String questionEquation){
+    private void getSolutions(String questionEquation, String questionTopic){
         final WolframService wolframService = new WolframService();
 
         wolframService.solveMathEquation(questionEquation, new Callback(){

@@ -1,7 +1,9 @@
 package com.example.kstedman.mathapplication.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,9 @@ import android.graphics.Typeface;
 import android.widget.TextView;
 
 import com.example.kstedman.mathapplication.R;
+import com.example.kstedman.mathapplication.WolframConstants;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.solveEquationButton) Button mSolveEquationButton;
@@ -23,13 +28,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.contactButton) Button mContactButton;
     @Bind(R.id.solveButton) Button mSolveButton;
     @Bind(R.id.inputEquation) TextView mInputEquation;
+
     private TextView mPageTitle;
+
+//    private SharedPreferences mSharedPreference;
+//    private SharedPreferences.Editor mEditor;
+
+    private DatabaseReference mSearchedTopicReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSearchedTopicReference = FirebaseDatabase.getInstance().getReference().child(WolframConstants.FIREBASE_CHILD_SEARCHED_TOPIC);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+//        mSharedPreference = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreference.edit();
+
 
         mPageTitle = (TextView) findViewById(R.id.pageTitle);
         Typeface leixoFont = Typeface.createFromAsset(getAssets(), "fonts/leixo.ttf");
@@ -46,9 +62,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Log.v("MainActivity Click", v.toString());
+        Log.v("PrefTopicKey", WolframConstants.PREFERENCES_TOPIC_KEY);
 
         if(v == mSolveEquationButton) {
             String mathEquation = mInputEquation.getText().toString();
+
+            saveTopicToFirebase(mathEquation);
+
+//            if(!(mathEquation).equals("")) {
+//                addToSharedPreferences(mathEquation);
+//            }
+
             Intent intent = new Intent(MainActivity.this, SolveActivity.class);
             intent.putExtra("question", mathEquation);
             startActivity(intent);
@@ -74,4 +98,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
+
+    public void saveTopicToFirebase(String topic) {
+        mSearchedTopicReference.push().setValue(topic);
+    }
+
+//    private void addToSharedPreferences(String equation){
+//        mEditor.putString(WolframConstants.PREFERENCES_TOPIC_KEY, "Math").apply();
+//    }
 }
