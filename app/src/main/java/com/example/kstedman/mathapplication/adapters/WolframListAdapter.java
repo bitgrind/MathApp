@@ -1,7 +1,10 @@
 package com.example.kstedman.mathapplication.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,9 @@ import android.widget.TextView;
 
 import com.example.kstedman.mathapplication.R;
 import com.example.kstedman.mathapplication.models.WolframResponseModel;
+import com.example.kstedman.mathapplication.ui.ResponseDetailActivity;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -41,7 +47,7 @@ public class WolframListAdapter extends RecyclerView.Adapter<WolframListAdapter.
         return mResponses.size();
     }
 
-    public class WolframViewHolder extends RecyclerView.ViewHolder {
+    public class WolframViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.solveValueView) TextView mSolveValue;
         @Bind(R.id.solveTitleView) TextView mSolveTitle;
 
@@ -50,12 +56,24 @@ public class WolframListAdapter extends RecyclerView.Adapter<WolframListAdapter.
         public WolframViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindWolframResponse(WolframResponseModel responseModel) {
             mSolveValue.setText(responseModel.getValue());
             mSolveTitle.setText(responseModel.getTitle());
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.v("ListAdapter", "This is the onclick");
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, ResponseDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("response", Parcels.wrap(mResponses));
+            mContext.startActivity(intent);
         }
     }
 
