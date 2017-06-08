@@ -75,5 +75,4 @@ public class ResponseDetailFragment extends Fragment implements View.OnClickList
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

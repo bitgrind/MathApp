@@ -52,14 +52,16 @@ public class WolframService {
                 for(int i  = 0; i < responseArray.length(); i++) {
                     JSONObject resultJSON = responseArray.getJSONObject(i);
                     JSONArray subpodJSON = resultJSON.getJSONArray("subpods");
+
                     String responseTitle = resultJSON.getString("title");
 
                     for(int k = 0; k < subpodJSON.length(); k++) {
                         JSONObject subpodObj = subpodJSON.getJSONObject(0);
                         String responseValue = subpodObj.getString("plaintext");
+                        JSONObject subpodImageJSON = subpodObj.getJSONObject("img").getJSONObject("src");
 
                         if(responseValue != null) {
-                            WolframResponseModel responseObj = new WolframResponseModel(responseTitle, responseValue);
+                            WolframResponseModel responseObj = new WolframResponseModel(responseTitle, responseValue, subpodImageJSON);
 
                             results.add(responseObj);
                         }

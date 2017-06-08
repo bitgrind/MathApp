@@ -4,14 +4,16 @@ import org.parceler.Parcel;
 
 @Parcel
 public class WolframResponseModel {
-    private String title;
-    private String value;
+    String title;
+    String value;
+    String image;
 
     public WolframResponseModel() {}
 
-    public WolframResponseModel(String title, String value){
+    public WolframResponseModel(String title, String value, String image){
         this.title = title;
         this.value = value;
+        this.image = image;
     }
 
     public String getTitle(){
@@ -20,6 +22,10 @@ public class WolframResponseModel {
 
     public String getValue(){
         return value;
+    }
+
+    public String getImage() {
+        return image;
     }
 
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kstedman.mathapplication.R;
@@ -50,6 +51,7 @@ public class WolframListAdapter extends RecyclerView.Adapter<WolframListAdapter.
     public class WolframViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.solveValueView) TextView mSolveValue;
         @Bind(R.id.solveTitleView) TextView mSolveTitle;
+        @Bind(R.id.solveImage) ImageView mSolveImage;
 
         private Context mContext;
 
@@ -68,12 +70,14 @@ public class WolframListAdapter extends RecyclerView.Adapter<WolframListAdapter.
 
         @Override
         public void onClick(View v) {
-            Log.v("ListAdapter", "This is the onclick");
-            int itemPosition = getLayoutPosition();
-            Intent intent = new Intent(mContext, ResponseDetailActivity.class);
-            intent.putExtra("position", itemPosition);
-            intent.putExtra("response", Parcels.wrap(mResponses));
-            mContext.startActivity(intent);
+            Log.v("ListAdapter", "This is the onclick"+v);
+//            int itemPosition = getLayoutPosition();
+//            Log.v("ListAdapter", "This is the onclick position: "+itemPosition);
+//            Intent intent = new Intent(mContext, ResponseDetailActivity.class);
+//            intent.putExtra("positionNum", Integer.toString(itemPosition));
+//            intent.putExtra("response", Parcels.wrap(mResponses));
+//
+//            mContext.startActivity(intent);
         }
     }
 

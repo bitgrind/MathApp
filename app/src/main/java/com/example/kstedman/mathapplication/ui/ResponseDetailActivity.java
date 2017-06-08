@@ -28,11 +28,16 @@ public class ResponseDetailActivity extends AppCompatActivity {
         Log.v("ResponseDetail", "This is the Response Detail Activity");
         ButterKnife.bind(this);
 
-        mResponses = Parcels.unwrap(getIntent().getParcelableExtra("question"));
+        mResponses = Parcels.unwrap(getIntent().getParcelableExtra("response"));
 
-        int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
+        Log.d("mResponseParcels", mResponses.toString());
+
+        int startingPosition = Integer.parseInt(getIntent().getStringExtra("positionNum"));
+
+        Log.v("DetailActivityIntentNum", Integer.toString(startingPosition));
 
         adapterViewPager = new ResponsePagerAdapter(getSupportFragmentManager(), mResponses);
+
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }
