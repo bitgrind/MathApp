@@ -70,14 +70,14 @@ public class WolframListAdapter extends RecyclerView.Adapter<WolframListAdapter.
 
         @Override
         public void onClick(View v) {
-            Log.v("ListAdapter", "This is the onclick"+v);
-//            int itemPosition = getLayoutPosition();
-//            Log.v("ListAdapter", "This is the onclick position: "+itemPosition);
-//            Intent intent = new Intent(mContext, ResponseDetailActivity.class);
-//            intent.putExtra("positionNum", Integer.toString(itemPosition));
-//            intent.putExtra("response", Parcels.wrap(mResponses));
-//
-//            mContext.startActivity(intent);
+            Log.v("ListAdapter", "This is the onclick");
+            int itemPosition = getLayoutPosition();
+            Log.v("ListAdapter", "This is the onclick position: "+itemPosition);
+            Intent intent = new Intent(mContext, ResponseDetailActivity.class);
+            intent.putExtra("positionNum", Integer.toString(itemPosition));
+            intent.putExtra("response", Parcels.wrap(mResponses));
+
+            mContext.startActivity(intent);
         }
     }
 
