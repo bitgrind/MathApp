@@ -32,6 +32,7 @@ public class SolveActivity extends AppCompatActivity {
 
 //    private SharedPreferences mSharedPreferences;
 //    private String mRecentTopic;
+
     private String mSearchedTopic;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -49,6 +50,7 @@ public class SolveActivity extends AppCompatActivity {
         String equation = intent.getStringExtra("question");
 
         getSolutions(equation, "Math");
+
 //        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        mRecentTopic = mSharedPreferences.getString(WolframConstants.PREFERENCES_TOPIC_KEY, null);
 //        Log.v("SetPrefTopicKey", mRecentTopic);

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.kstedman.mathapplication.R;
 import com.example.kstedman.mathapplication.models.WolframResponseModel;
 import com.example.kstedman.mathapplication.ui.ResponseDetailActivity;
+import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
@@ -66,6 +67,7 @@ public class WolframListAdapter extends RecyclerView.Adapter<WolframListAdapter.
         public void bindWolframResponse(WolframResponseModel responseModel) {
             mSolveValue.setText(responseModel.getValue());
             mSolveTitle.setText(responseModel.getTitle());
+            Picasso.with(mContext).load(responseModel.getImage()).into(mSolveImage);
         }
 
         @Override

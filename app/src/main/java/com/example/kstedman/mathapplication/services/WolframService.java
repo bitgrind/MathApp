@@ -56,12 +56,15 @@ public class WolframService {
                     String responseTitle = resultJSON.getString("title");
 
                     for(int k = 0; k < subpodJSON.length(); k++) {
-                        JSONObject subpodObj = subpodJSON.getJSONObject(0);
+                        JSONObject subpodObj = subpodJSON.getJSONObject(k );
                         String responseValue = subpodObj.getString("plaintext");
-                        JSONObject subpodImageJSON = subpodObj.getJSONObject("img").getJSONObject("src");
+                        JSONObject subpodImageJSON = subpodObj.getJSONObject("img");
+                        String imgPath = subpodImageJSON.getString("src");
+
+                        Log.d("imgPathService", imgPath);
 
                         if(responseValue != null) {
-                            WolframResponseModel responseObj = new WolframResponseModel(responseTitle, responseValue, subpodImageJSON);
+                            WolframResponseModel responseObj = new WolframResponseModel(responseTitle, responseValue, imgPath);
 
                             results.add(responseObj);
                         }
