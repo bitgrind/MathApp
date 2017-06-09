@@ -48,7 +48,7 @@ public class ResponseDetailFragment extends Fragment implements View.OnClickList
     public void onCreate(Bundle savedInstanceState) {
         Log.d("SolutionDetail", "Solution Detail onCreate");
         super.onCreate(savedInstanceState);
-        mResponseModel = Parcels.unwrap(getArguments().getParcelable("wolframModel"));
+        mResponseModel = Parcels.unwrap(getArguments().getParcelable("response"));
     }
 
     @Override

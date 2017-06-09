@@ -58,6 +58,7 @@ public class WolframService {
                     for(int k = 0; k < subpodJSON.length(); k++) {
                         JSONObject subpodObj = subpodJSON.getJSONObject(k );
                         String responseValue = subpodObj.getString("plaintext");
+
                         JSONObject subpodImageJSON = subpodObj.getJSONObject("img");
                         String imgPath = subpodImageJSON.getString("src");
 
@@ -69,8 +70,6 @@ public class WolframService {
                             results.add(responseObj);
                         }
                     }
-
-
                 }
             }
 

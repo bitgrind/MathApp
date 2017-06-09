@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kstedman.mathapplication.R;
 import com.example.kstedman.mathapplication.WolframConstants;
@@ -17,6 +20,8 @@ import com.example.kstedman.mathapplication.adapters.WolframCustomAdapter;
 import com.example.kstedman.mathapplication.adapters.WolframListAdapter;
 import com.example.kstedman.mathapplication.models.WolframResponseModel;
 import com.example.kstedman.mathapplication.services.WolframService;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +34,8 @@ import okhttp3.Response;
 
 public class SolveActivity extends AppCompatActivity {
     public static final String TAG = SolveActivity.class.getSimpleName();
+    private Button mSaveSolutionButton;
+    ArrayList<WolframResponseModel> mResponses = new ArrayList<>();
 
 //    private SharedPreferences mSharedPreferences;
 //    private String mRecentTopic;
@@ -44,6 +51,7 @@ public class SolveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solve);
+        mSaveSolutionButton = (Button) findViewById(R.id.saveSolutionButton);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
@@ -54,6 +62,15 @@ public class SolveActivity extends AppCompatActivity {
 //        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        mRecentTopic = mSharedPreferences.getString(WolframConstants.PREFERENCES_TOPIC_KEY, null);
 //        Log.v("SetPrefTopicKey", mRecentTopic);
+
+        mSaveSolutionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                DatabaseReference questionRef = FirebaseDatabase.getInstance().getReference(WolframConstants.FIREBASE_CHILD_QUESTIONS);
+//                questionRef.push().setValue(mResponseModel);
+//                Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getSolutions(String questionEquation, String questionTopic){
